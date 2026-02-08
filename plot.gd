@@ -24,8 +24,12 @@ const SEED_COLORS = [
 #func _ready():
 	#seed_id = randi() % 8
 	
-func _ready():
-	seed_id = randi() % SEED_COLORS.size()
+#func _ready():
+	#seed_id = randi() % SEED_COLORS.size()
+	#hide_seed()
+
+func set_seed(id):
+	seed_id = id
 	hide_seed()
 
 func _on_area_2d_input_event(viewport, event, shape_idx):

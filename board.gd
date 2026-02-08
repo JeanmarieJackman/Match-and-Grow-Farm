@@ -1,5 +1,7 @@
 extends Node2D
 
+signal turns_changed(value)
+
 @export var rows := 4
 @export var cols := 4
 @export var spacing := 120
@@ -11,9 +13,19 @@ var resolving := false
 var plots := []
 var first_selected = null
 var second_selected = null
+#var seed_pool := []
+
+#func generate_seeds():
+	#seed_pool.clear()
+	#for i in range(8):
+		#seed_pool.append(i)
+		#seed_pool.append(i)
+	#seed_pool.shuffle()
+
 
 func _ready():
 	remaining_turns = max_turns
+	emit_signal("turns_changed", remaining_turns)
 	print("Turns:", remaining_turns)
 	spawn_grid()
 
@@ -40,7 +52,7 @@ func spawn_grid():
 		seeds.append(i)
 
 	seeds.shuffle()
-
+	
 	var index = 0
 	for r in range(rows):
 		for c in range(cols):
@@ -51,6 +63,21 @@ func spawn_grid():
 			add_child(plot)
 			plot.connect("plot_clicked", _on_plot_clicked)
 			plots.append(plot)
+			
+	#generate_seeds()
+	#
+	#var index := 0
+#
+	#for r in range(rows):
+		#for c in range(cols):
+			#var plot = plot_scene.instantiate()
+			#plot.position = Vector2(c * spacing, r * spacing)
+			#plot.seed_id = seed_pool[index]
+			#index += 1
+			#add_child(plot)
+			#plot.connect("plot_clicked", _on_plot_clicked)
+			#plots.append(plot)
+
 
 #func _on_plot_clicked(plot):
 	#if first_selected == null:
@@ -74,9 +101,16 @@ func _on_plot_clicked(plot):
 		second_selected = plot
 		plot.reveal()
 		remaining_turns -= 1
+		emit_signal("turns_changed", remaining_turns)
 		print("Turns:", remaining_turns)
 		resolving = true
 		check_match()
+		
+#func _on_board_turns_changed(value):
+	##print(get_tree().current_scene.get_children())
+	#var canvas = $CanvasLayer
+	#print(canvas.get_children())
+	##$CanvasLayer/TurnsLabel.text = "Turns: %d" % value
 
 #func check_match():
 	#if first_selected.seed_id == second_selected.seed_id:
