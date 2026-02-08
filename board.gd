@@ -3,13 +3,19 @@ extends Node2D
 @export var rows := 4
 @export var cols := 4
 @export var spacing := 120
+@export var max_turns := 12
+var remaining_turns := 0
+
 
 var plots := []
 var first_selected = null
 var second_selected = null
 
 func _ready():
+	remaining_turns = max_turns
+	print("Turns:", remaining_turns)
 	spawn_grid()
+
 
 #func spawn_grid():
 	#var plot_scene = preload("res://plot.tscn")
@@ -52,6 +58,8 @@ func _on_plot_clicked(plot):
 	elif second_selected == null and plot != first_selected:
 		second_selected = plot
 		plot.reveal()
+		remaining_turns -= 1
+		print("Turns:", remaining_turns)
 		check_match()
 
 func check_match():
@@ -64,3 +72,16 @@ func check_match():
 		second_selected.hide_seed()
 	first_selected = null
 	second_selected = null
+	if remaining_turns <= 0:
+		print("LOSE")
+		get_tree().paused = true
+	if all_matched():
+		print("WIN")
+		get_tree().paused = true
+
+
+func all_matched():
+	for p in plots:
+		if not p.locked:
+			return false
+	return true
