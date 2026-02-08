@@ -5,6 +5,7 @@ extends Node2D
 @export var spacing := 120
 @export var max_turns := 12
 var remaining_turns := 0
+var resolving := false
 
 
 var plots := []
@@ -51,7 +52,21 @@ func spawn_grid():
 			plot.connect("plot_clicked", _on_plot_clicked)
 			plots.append(plot)
 
+#func _on_plot_clicked(plot):
+	#if first_selected == null:
+		#first_selected = plot
+		#plot.reveal()
+	#elif second_selected == null and plot != first_selected:
+		#second_selected = plot
+		#plot.reveal()
+		#remaining_turns -= 1
+		#print("Turns:", remaining_turns)
+		#check_match()
+		
 func _on_plot_clicked(plot):
+	if resolving:
+		return
+
 	if first_selected == null:
 		first_selected = plot
 		plot.reveal()
@@ -60,7 +75,25 @@ func _on_plot_clicked(plot):
 		plot.reveal()
 		remaining_turns -= 1
 		print("Turns:", remaining_turns)
+		resolving = true
 		check_match()
+
+#func check_match():
+	#if first_selected.seed_id == second_selected.seed_id:
+		#first_selected.lock_in()
+		#second_selected.lock_in()
+	#else:
+		#await get_tree().create_timer(0.5).timeout
+		#first_selected.hide_seed()
+		#second_selected.hide_seed()
+	#first_selected = null
+	#second_selected = null
+	#if remaining_turns <= 0:
+		#print("LOSE")
+		#get_tree().paused = true
+	#if all_matched():
+		#print("WIN")
+		#get_tree().paused = true
 
 func check_match():
 	if first_selected.seed_id == second_selected.seed_id:
@@ -70,15 +103,17 @@ func check_match():
 		await get_tree().create_timer(0.5).timeout
 		first_selected.hide_seed()
 		second_selected.hide_seed()
+
 	first_selected = null
 	second_selected = null
+	resolving = false
+	
 	if remaining_turns <= 0:
 		print("LOSE")
 		get_tree().paused = true
-	if all_matched():
+	elif all_matched():
 		print("WIN")
 		get_tree().paused = true
-
 
 func all_matched():
 	for p in plots:
