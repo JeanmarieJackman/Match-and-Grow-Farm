@@ -20,6 +20,12 @@ Prototype complete. Core loop implemented (grid, matching, visual states).
 Engine: Godot 4.x  
 Platform: HTML5 (itch.io target)
 
+##Credits
+Art assets by Kenmi Art
+Source: https://kenmi-art.itch.io/
+
+Asset pack purchased via itch.io. Used with permission.
+
 ## Next Steps
 Remaining turns UI.  
 Win/lose screens.  
