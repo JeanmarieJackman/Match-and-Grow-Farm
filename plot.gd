@@ -132,3 +132,7 @@ func lock_in():
 	locked = true
 	state = PlotState.MATCHED
 	update_visuals()
+	
+func set_win():
+	state = PlotState.WIN
+	update_visuals()

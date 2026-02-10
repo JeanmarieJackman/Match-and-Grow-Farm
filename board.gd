@@ -44,6 +44,7 @@ func spawn_grid():
 	var plot_scene = preload("res://plot.tscn")
 
 	var total_plots = rows * cols
+	@warning_ignore("integer_division")
 	var seed_pairs = total_plots / 2
 	var seeds = []
 
@@ -147,6 +148,8 @@ func check_match():
 		get_tree().paused = true
 	elif all_matched():
 		print("WIN")
+		for p in plots:
+			p.set_win()
 		get_tree().paused = true
 
 func all_matched():
