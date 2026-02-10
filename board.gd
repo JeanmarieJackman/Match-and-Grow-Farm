@@ -5,7 +5,7 @@ signal turns_changed(value)
 @export var rows := 4
 @export var cols := 4
 @export var spacing := 120
-@export var max_turns := 16
+@export var max_turns := 160
 var remaining_turns := 0
 var resolving := false
 

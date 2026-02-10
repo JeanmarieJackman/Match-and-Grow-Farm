@@ -8,38 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://bs4qo6or7tcuh" path="res://art/crops/carrot/carrot.png" id="6_xqdsx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r8nw5"]
-size = Vector2(100, 100)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ticr0"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ctcuh"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_r8nw5"]
+size = Vector2(48, 48)
 
 [node name="Plot" type="Node2D" unique_id=563843946]
 script = ExtResource("1_r8nw5")
+dirt_texture = ExtResource("2_bhrig")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=974546038]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=823431215]
 shape = SubResource("RectangleShape2D_r8nw5")
-
-[node name="CoverSprite" type="Sprite2D" parent="." unique_id=433172963]
-modulate = Color(0.8320226, 0.7662867, 0.57291615, 1)
-z_index = 1
-scale = Vector2(100, 100)
-texture = SubResource("PlaceholderTexture2D_ticr0")
-
-[node name="MatchedSprite" type="Sprite2D" parent="." unique_id=1540149570]
-visible = false
-modulate = Color(0.35707492, 0.14045614, 0.0011214465, 1)
-scale = Vector2(100, 100)
-texture = SubResource("PlaceholderTexture2D_ctcuh")
-
-[node name="ContentSprite" type="Sprite2D" parent="." unique_id=498690771]
-visible = false
-scale = Vector2(100, 100)
-texture = SubResource("PlaceholderTexture2D_r8nw5")
 
 [node name="BaseTile" type="Sprite2D" parent="." unique_id=853875211]
 texture = ExtResource("2_bhrig")
@@ -52,8 +30,24 @@ texture = ExtResource("3_lbukb")
 visible = false
 texture = ExtResource("4_1oo2w")
 
-[node name="CropStage" type="Sprite2D" parent="." unique_id=1133226910]
+[node name="CropStage_UL" type="Sprite2D" parent="." unique_id=1133226910]
 visible = false
+position = Vector2(-16, -16)
+texture = ExtResource("5_osdy5")
+
+[node name="CropStage_UR" type="Sprite2D" parent="." unique_id=1792345068]
+visible = false
+position = Vector2(16, -16)
+texture = ExtResource("5_osdy5")
+
+[node name="CropStage_LL" type="Sprite2D" parent="." unique_id=201245422]
+visible = false
+position = Vector2(-16, 16)
+texture = ExtResource("5_osdy5")
+
+[node name="CropStage_LR" type="Sprite2D" parent="." unique_id=363066464]
+visible = false
+position = Vector2(16, 16)
 texture = ExtResource("5_osdy5")
 
 [node name="FinalCrop" type="Sprite2D" parent="." unique_id=424257003]
