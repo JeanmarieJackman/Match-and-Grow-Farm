@@ -19,38 +19,46 @@ script = ExtResource("1_r8nw5")
 shape = SubResource("RectangleShape2D_r8nw5")
 
 [node name="BaseTile" type="Sprite2D" parent="." unique_id=853875211]
+scale = Vector2(4, 4)
 texture = ExtResource("2_bhrig")
 
 [node name="SeedPack" type="Sprite2D" parent="." unique_id=1169498005]
 visible = false
+scale = Vector2(4, 4)
 texture = ExtResource("3_lbukb")
 
 [node name="SeedPost" type="Sprite2D" parent="." unique_id=610796070]
 visible = false
+scale = Vector2(4, 4)
 texture = ExtResource("4_1oo2w")
 
 [node name="CropStage_UL" type="Sprite2D" parent="." unique_id=1133226910]
 visible = false
 position = Vector2(-16, -16)
+scale = Vector2(4, 4)
 texture = ExtResource("5_osdy5")
 
 [node name="CropStage_UR" type="Sprite2D" parent="." unique_id=1792345068]
 visible = false
 position = Vector2(16, -16)
+scale = Vector2(4, 4)
 texture = ExtResource("5_osdy5")
 
 [node name="CropStage_LL" type="Sprite2D" parent="." unique_id=201245422]
 visible = false
 position = Vector2(-16, 16)
+scale = Vector2(4, 4)
 texture = ExtResource("5_osdy5")
 
 [node name="CropStage_LR" type="Sprite2D" parent="." unique_id=363066464]
 visible = false
 position = Vector2(16, 16)
+scale = Vector2(4, 4)
 texture = ExtResource("5_osdy5")
 
 [node name="FinalCrop" type="Sprite2D" parent="." unique_id=424257003]
 visible = false
+scale = Vector2(4, 4)
 texture = ExtResource("6_xqdsx")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
