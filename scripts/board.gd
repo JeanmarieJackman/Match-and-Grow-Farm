@@ -41,6 +41,53 @@ func _ready():
 			#plot.connect("plot_clicked", _on_plot_clicked)
 			#plots.append(plot)
 
+#func spawn_grid():
+	#var plot_scene = preload("res://plot.tscn")
+#
+	#var total_plots = rows * cols
+	#@warning_ignore("integer_division")
+	#var seed_pairs = total_plots / 2
+	#var seeds = []
+#
+	#for i in range(seed_pairs):
+		#seeds.append(i)
+		#seeds.append(i)
+#
+	#seeds.shuffle()
+#
+	#var index = 0
+	#for r in range(rows):
+		#for c in range(cols):
+			#var plot = plot_scene.instantiate()
+			#plot.position = Vector2(c * spacing, r * spacing)
+#
+			#var seed_id = seeds[index]
+			#index += 1
+#
+			#plot.set_seed(seed_id)
+#
+			#if seed_id < crop_types.size():
+				#plot.crop_data = crop_types[seed_id]
+				#plot.apply_crop_data()
+#
+			#add_child(plot)
+			#plot.connect("plot_clicked", _on_plot_clicked)
+			#plots.append(plot)
+			
+	#generate_seeds()
+	#
+	#var index := 0
+#
+	#for r in range(rows):
+		#for c in range(cols):
+			#var plot = plot_scene.instantiate()
+			#plot.position = Vector2(c * spacing, r * spacing)
+			#plot.seed_id = seed_pool[index]
+			#index += 1
+			#add_child(plot)
+			#plot.connect("plot_clicked", _on_plot_clicked)
+			#plots.append(plot)
+			
 func spawn_grid():
 	var plot_scene = preload("res://plot.tscn")
 
@@ -61,6 +108,8 @@ func spawn_grid():
 			var plot = plot_scene.instantiate()
 			plot.position = Vector2(c * spacing, r * spacing)
 
+			add_child(plot)  # IMPORTANT: must be before using onready vars
+
 			var seed_id = seeds[index]
 			index += 1
 
@@ -70,23 +119,8 @@ func spawn_grid():
 				plot.crop_data = crop_types[seed_id]
 				plot.apply_crop_data()
 
-			add_child(plot)
 			plot.connect("plot_clicked", _on_plot_clicked)
 			plots.append(plot)
-			
-	#generate_seeds()
-	#
-	#var index := 0
-#
-	#for r in range(rows):
-		#for c in range(cols):
-			#var plot = plot_scene.instantiate()
-			#plot.position = Vector2(c * spacing, r * spacing)
-			#plot.seed_id = seed_pool[index]
-			#index += 1
-			#add_child(plot)
-			#plot.connect("plot_clicked", _on_plot_clicked)
-			#plots.append(plot)
 
 
 #func _on_plot_clicked(plot):

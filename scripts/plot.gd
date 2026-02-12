@@ -1,31 +1,217 @@
+#extends Node2D
+#
+#signal plot_clicked(plot)
+#
+##@onready var content_sprite := $ContentSprite
+##@onready var cover_sprite = $CoverSprite
+##@onready var matched_sprite = $MatchedSprite
+#@onready var base_tile: Sprite2D = $BaseTile
+#@onready var seed_pack: Sprite2D = $SeedPack
+#@onready var seed_post: Sprite2D = $SeedPost
+##@onready var crop_stage = $CropStage
+#@onready var final_crop: Sprite2D = $FinalCrop
+#@onready var crop_stages: Array[Sprite2D] = [
+	#$CropStage_UL,
+	#$CropStage_UR,
+	#$CropStage_LL,
+	#$CropStage_LR
+#]
+#
+#
+#@export var dirt_texture: Texture2D
+#@export var crop_data: CropData
+#
+#
+#enum PlotState { COVERED, REVEALED, MATCHED, WIN }
+#var state = PlotState.COVERED
+#
+#func apply_crop_data():
+	#seed_pack.texture = crop_data.seed_pack
+	#seed_post.texture = crop_data.seed_post
+	#crop_stages[0].texture = crop_data.crop_stage_1
+	#crop_stages[1].texture = crop_data.crop_stage_2
+	#crop_stages[2].texture = crop_data.crop_stage_3
+	#crop_stages[3].texture = crop_data.crop_stage_4
+	#final_crop.texture = crop_data.final_crop
+	#print("crop_data:", crop_data)
+	#print("seed_pack:", seed_pack)
+	#print("seed_post:", seed_post)
+	#print("final_crop:", final_crop)
+	#print("stages:", crop_stages)
+	#print(crop_data)
+#
+#func update_visuals():
+	#base_tile.visible = true
+	#seed_pack.visible = false
+	#seed_post.visible = false
+	##crop_stage.visible = false
+	#for c in crop_stages:
+		#c.visible = false
+	#final_crop.visible = false
+#
+	#match state:
+		#PlotState.COVERED:
+			#pass
+		#PlotState.REVEALED:
+			#seed_pack.visible = true
+		#PlotState.MATCHED:
+			#seed_post.visible = true
+			##crop_stage.visible = true
+			#for c in crop_stages:
+				#c.visible = true
+		#PlotState.WIN:
+			#final_crop.visible = true
+			##for c in crop_stages:
+				##c.visible = false
+			##seed_post.visible = false
+			#
+	##match state:
+		##PlotState.COVERED, PlotState.REVEALED:
+			##base_tile.texture = dirt_texture
+##
+		##PlotState.MATCHED, PlotState.WIN:
+			##base_tile.texture = grass_texture
+#
+#
+#var seed_id := 0
+#var locked := false
+#
+##const COVER_COLOR = Color(0.8, 0.8, 0.8)
+##const SEED_COLORS = [
+	##Color(1, 0, 0),   # red
+	##Color(0, 1, 0),   # green
+	##Color(0, 0, 1),   # blue
+	##Color(1, 1, 0),   # yellow
+	##Color(1, 0.5, 0), # orange
+	##Color(0, 1, 1),   # cyan
+	##Color(0.6, 0, 1), # purple
+	##Color(0, 0, 0)    # black
+##]
+#
+##func _ready():
+	##seed_id = randi() % 8
+	#
+##func _ready():
+	##seed_id = randi() % SEED_COLORS.size()
+	##hide_seed()
+	#
+##func _ready():
+	##state = PlotState.COVERED
+	##if crop_data:
+		##apply_crop_data()
+	###crop_stages = crop_stage.get_children()
+	##update_visuals()
+	#
+##func _ready():
+	##print(seed_pack)
+	##print(seed_post)
+	##print(final_crop)
+	##print(crop_stages)
+	##state = PlotState.COVERED
+	##if crop_data:
+		##apply_crop_data()
+	##update_visuals()
+#
+#func set_seed(id):
+	#seed_id = id
+	##hide_seed()
+#
+#func _on_area_2d_input_event(_viewport, event, _shape_idx):
+	#if locked:
+		#return
+	#if event is InputEventMouseButton and event.pressed:
+		#print("plot clicked")
+		#emit_signal("plot_clicked", self)
+#
+##func reveal():
+	##modulate = Color(1, 1, 1)
+#
+##func reveal():
+	###modulate = Color(1, 1, 0)
+	##content_sprite.modulate = SEED_COLORS[seed_id]
+	##content_sprite.visible = true
+	##cover_sprite.visible = false
+	##print("seed:", seed_id)
+	#
+#func reveal():
+	#state = PlotState.REVEALED
+	#update_visuals()
+#
+##func hide_seed():
+	##content_sprite.visible = false
+	##cover_sprite.visible = true
+	##print("HIDE", seed_id)
+	###cover_sprite.modulate = Color(1, 1, 1)
+	###modulate = Color(1, 1, 1)
+	###modulate = COVER_COLOR
+	#
+#func hide_seed():
+	#state = PlotState.COVERED
+	#update_visuals()
+#
+##func lock_in():
+	##locked = true
+	##cover_sprite.visible = false
+	##content_sprite.visible = false
+	##matched_sprite.visible = true
+	##content_sprite.modulate = Color(0.3, 0.3, 0.3)
+	##modulate = Color(0, 1, 0)
+	##modulate = Color(0.3, 0.3, 0.3)
+	#
+#func lock_in():
+	#locked = true
+	#state = PlotState.MATCHED
+	#update_visuals()
+	#
+#func set_win():
+	#state = PlotState.WIN
+	#update_visuals()
+	#
+#func _ready():
+	#state = PlotState.COVERED
+	#update_visuals()
+	#
+
 extends Node2D
 
 signal plot_clicked(plot)
 
-#@onready var content_sprite := $ContentSprite
-#@onready var cover_sprite = $CoverSprite
-#@onready var matched_sprite = $MatchedSprite
-@onready var base_tile = $BaseTile
-@onready var seed_pack = $SeedPack
-@onready var seed_post = $SeedPost
-#@onready var crop_stage = $CropStage
-@onready var final_crop = $FinalCrop
-@onready var crop_stages = [
+@onready var base_tile: Sprite2D = $BaseTile
+@onready var seed_pack: Sprite2D = $SeedPack
+@onready var seed_post: Sprite2D = $SeedPost
+@onready var final_crop: Sprite2D = $FinalCrop
+@onready var crop_stages: Array[Sprite2D] = [
 	$CropStage_UL,
 	$CropStage_UR,
 	$CropStage_LL,
 	$CropStage_LR
 ]
 
-
 @export var dirt_texture: Texture2D
 @export var crop_data: CropData
 
-
 enum PlotState { COVERED, REVEALED, MATCHED, WIN }
+
 var state = PlotState.COVERED
+var seed_id := 0
+var locked := false
+
+
+func _ready():
+	state = PlotState.COVERED
+	if crop_data:
+		apply_crop_data()
+	update_visuals()
+
+
+func set_seed(id):
+	seed_id = id
+
 
 func apply_crop_data():
+	if crop_data == null:
+		return
+
 	seed_pack.texture = crop_data.seed_pack
 	seed_post.texture = crop_data.seed_post
 	crop_stages[0].texture = crop_data.crop_stage_1
@@ -33,120 +219,67 @@ func apply_crop_data():
 	crop_stages[2].texture = crop_data.crop_stage_3
 	crop_stages[3].texture = crop_data.crop_stage_4
 	final_crop.texture = crop_data.final_crop
+	
+	if not seed_pack:
+		print("seed_pack null")
+	if not seed_post:
+		print("seed_post null")
+	if not final_crop:
+		print("final_crop null")
+	for i in crop_stages.size():
+		if not crop_stages[i]:
+			print("crop_stages ", i, " null")
+
 
 func update_visuals():
 	base_tile.visible = true
 	seed_pack.visible = false
 	seed_post.visible = false
-	#crop_stage.visible = false
+	final_crop.visible = false
+
 	for c in crop_stages:
 		c.visible = false
-	final_crop.visible = false
 
 	match state:
 		PlotState.COVERED:
 			pass
+
 		PlotState.REVEALED:
 			seed_pack.visible = true
+
 		PlotState.MATCHED:
 			seed_post.visible = true
-			#crop_stage.visible = true
 			for c in crop_stages:
 				c.visible = true
+
 		PlotState.WIN:
 			final_crop.visible = true
-			#for c in crop_stages:
-				#c.visible = false
-			#seed_post.visible = false
-			
-	#match state:
-		#PlotState.COVERED, PlotState.REVEALED:
-			#base_tile.texture = dirt_texture
-#
-		#PlotState.MATCHED, PlotState.WIN:
-			#base_tile.texture = grass_texture
 
 
-var seed_id := 0
-var locked := false
-
-#const COVER_COLOR = Color(0.8, 0.8, 0.8)
-#const SEED_COLORS = [
-	#Color(1, 0, 0),   # red
-	#Color(0, 1, 0),   # green
-	#Color(0, 0, 1),   # blue
-	#Color(1, 1, 0),   # yellow
-	#Color(1, 0.5, 0), # orange
-	#Color(0, 1, 1),   # cyan
-	#Color(0.6, 0, 1), # purple
-	#Color(0, 0, 0)    # black
-#]
-
-#func _ready():
-	#seed_id = randi() % 8
-	
-#func _ready():
-	#seed_id = randi() % SEED_COLORS.size()
-	#hide_seed()
-	
-func _ready():
-	state = PlotState.COVERED
-	if crop_data:
-		apply_crop_data()
-	#crop_stages = crop_stage.get_children()
+func reveal():
+	state = PlotState.REVEALED
 	update_visuals()
 
-func set_seed(id):
-	seed_id = id
-	#hide_seed()
+
+func hide_seed():
+	state = PlotState.COVERED
+	update_visuals()
+
+
+func lock_in():
+	locked = true
+	state = PlotState.MATCHED
+	update_visuals()
+
+
+func set_win():
+	state = PlotState.WIN
+	update_visuals()
+
 
 func _on_area_2d_input_event(_viewport, event, _shape_idx):
 	if locked:
 		return
 	if event is InputEventMouseButton and event.pressed:
-		print("plot clicked")
 		emit_signal("plot_clicked", self)
-
-#func reveal():
-	#modulate = Color(1, 1, 1)
-
-#func reveal():
-	##modulate = Color(1, 1, 0)
-	#content_sprite.modulate = SEED_COLORS[seed_id]
-	#content_sprite.visible = true
-	#cover_sprite.visible = false
-	#print("seed:", seed_id)
-	
-func reveal():
-	state = PlotState.REVEALED
-	update_visuals()
-
-#func hide_seed():
-	#content_sprite.visible = false
-	#cover_sprite.visible = true
-	#print("HIDE", seed_id)
-	##cover_sprite.modulate = Color(1, 1, 1)
-	##modulate = Color(1, 1, 1)
-	##modulate = COVER_COLOR
-	
-func hide_seed():
-	state = PlotState.COVERED
-	update_visuals()
-
-#func lock_in():
-	#locked = true
-	#cover_sprite.visible = false
-	#content_sprite.visible = false
-	#matched_sprite.visible = true
-	#content_sprite.modulate = Color(0.3, 0.3, 0.3)
-	#modulate = Color(0, 1, 0)
-	#modulate = Color(0.3, 0.3, 0.3)
-	
-func lock_in():
-	locked = true
-	state = PlotState.MATCHED
-	update_visuals()
-	
-func set_win():
-	state = PlotState.WIN
-	update_visuals()
+		
