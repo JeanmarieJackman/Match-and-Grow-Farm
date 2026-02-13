@@ -1,14 +1,14 @@
 # Match & Grow Farm
 
 ## Description
-A small browser-based puzzle game combining memory matching with a farm theme. Players dig plots to reveal seeds. Matching seeds grow crops. Fewer turns equals a higher score.
+A small browser-based puzzle game that combines memory-matching with a farm theme. Players dig plots to reveal seeds. Matching seeds grow crops. Fewer turns equals a higher score.
 
 ## How to Play
 Click one plot to dig.  
 Click a second plot.  
 Matching seeds grow and lock.  
 Mismatches reset and consume a turn.  
-Match all plots before turns run out to win.
+Match all plots before the turns run out to win.
 
 ## Controls
 Mouse only.
@@ -28,11 +28,16 @@ Asset pack purchased via itch.io. Used with permission.
 
 ## Next Steps
 ### Alpha
-Remaining turns UI.  
-Win/lose screens.  
-Placeholder Audio
+• Turns UI readable and styled (font, size, position)
+• Clear win screen (overlay + restart)
+• Clear lose screen (overlay + restart)
+• Placeholder SFX: click, match, mismatch, win, lose
+• One looping background track
+
 ### Beta
-Presentation Animation
-Replace placeholder visuals.
-Final Audio
+• Board intro animation
+• Match growth animation (scale, bounce, pop)
+• Win bloom animation (tilt, camera push, particles later)
+• Final UI polish
+• Final sound mix + transitions
 
