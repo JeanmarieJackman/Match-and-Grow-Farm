@@ -260,6 +260,10 @@ func reveal():
 	state = PlotState.REVEALED
 	update_visuals()
 
+	var tween = create_tween()
+	scale = Vector2(0.9, 0.9)
+	tween.tween_property(self, "scale", Vector2(1, 1), 0.08)
+
 
 func hide_seed():
 	state = PlotState.COVERED
@@ -283,3 +287,8 @@ func _on_area_2d_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		emit_signal("plot_clicked", self)
 		
+func _on_area_2d_mouse_entered():
+	scale = Vector2(1.05, 1.05)
+
+func _on_area_2d_mouse_exited():
+	scale = Vector2(1, 1)

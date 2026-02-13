@@ -4,7 +4,7 @@ signal turns_changed(value)
 
 @export var rows := 4
 @export var cols := 4
-@export var spacing := 200
+@export var spacing := 220
 @export var max_turns := 160
 @export var crop_types: Array[CropData]
 

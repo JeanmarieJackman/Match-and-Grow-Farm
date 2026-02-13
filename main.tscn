@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://n2o30qfhgg4w" path="res://art/crops/lettuce/lettuce.png" id="14_getpj"]
 [ext_resource type="Texture2D" uid="uid://cnqafm0rix5yk" path="res://art/crops/lettuce/lettuce_seedpack.png" id="15_ryguw"]
 [ext_resource type="Texture2D" uid="uid://n2uvrjvm1nn7" path="res://art/crops/lettuce/lettuce_post.png" id="16_d13ii"]
+[ext_resource type="Texture2D" uid="uid://c4x4bcdaslmd1" path="res://art/tiles/Grass_Middle.png" id="18_074og"]
 
 [sub_resource type="Resource" id="Resource_1u8w0"]
 script = ExtResource("2_0odxb")
@@ -32,6 +33,7 @@ metadata/_custom_type_script = "uid://djkevnw5xau71"
 [node name="Main" type="Node2D" unique_id=645306665]
 
 [node name="Board" type="Node2D" parent="." unique_id=1643349823]
+top_level = true
 position = Vector2(200, 200)
 script = ExtResource("1_0xm2m")
 crop_types = Array[ExtResource("2_0odxb")]([ExtResource("3_lswn8"), ExtResource("4_a6jrf"), ExtResource("5_xuqvo"), ExtResource("6_qsp4k"), ExtResource("7_kq58d"), ExtResource("8_seu75"), ExtResource("9_htxhm"), SubResource("Resource_1u8w0")])
@@ -41,6 +43,12 @@ crop_types = Array[ExtResource("2_0odxb")]([ExtResource("3_lswn8"), ExtResource(
 [node name="TurnsLabel" type="Label" parent="CanvasLayer" unique_id=1323811307]
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
 script = ExtResource("2_0xm2m")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=97677065]
+scale = Vector2(400, 400)
+texture = ExtResource("18_074og")
 
 [connection signal="turns_changed" from="Board" to="CanvasLayer/TurnsLabel" method="_on_board_turns_changed"]
