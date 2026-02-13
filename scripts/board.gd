@@ -15,6 +15,9 @@ var plots := []
 var first_selected = null
 var second_selected = null
 #var seed_pool := []
+var match_count := 0
+var growth_stage := 1
+
 
 #func generate_seeds():
 	#seed_pool.clear()
@@ -177,6 +180,10 @@ func check_match():
 	if first_selected.seed_id == second_selected.seed_id:
 		first_selected.lock_in()
 		second_selected.lock_in()
+		
+		match_count += 1
+		update_growth_stage()
+		
 	else:
 		await get_tree().create_timer(0.5).timeout
 		first_selected.hide_seed()
@@ -192,7 +199,8 @@ func check_match():
 	elif all_matched():
 		print("WIN")
 		for p in plots:
-			p.set_win()
+			#p.set_win()
+			p.set_final_stage()
 		get_tree().paused = true
 
 func all_matched():
@@ -200,3 +208,16 @@ func all_matched():
 		if not p.locked:
 			return false
 	return true
+	
+func update_growth_stage():
+	match match_count:
+		3:
+			growth_stage = 2
+		5:
+			growth_stage = 3
+		7:
+			growth_stage = 4
+
+	for p in plots:
+		if p.locked:
+			p.set_growth_stage(growth_stage)

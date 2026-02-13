@@ -46,7 +46,7 @@ texture = ExtResource("5_osdy5")
 
 [node name="CropStage_LL" type="Sprite2D" parent="." unique_id=201245422]
 visible = false
-position = Vector2(64, 64)
+position = Vector2(-64, 64)
 scale = Vector2(4, 4)
 texture = ExtResource("5_osdy5")
 
@@ -56,9 +56,15 @@ position = Vector2(64, 64)
 scale = Vector2(4, 4)
 texture = ExtResource("5_osdy5")
 
+[node name="FinalCropShadow" type="Sprite2D" parent="." unique_id=217009020]
+visible = false
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(8, 8)
+texture = ExtResource("6_xqdsx")
+
 [node name="FinalCrop" type="Sprite2D" parent="." unique_id=424257003]
 visible = false
-scale = Vector2(4, 4)
+scale = Vector2(8, 8)
 texture = ExtResource("6_xqdsx")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

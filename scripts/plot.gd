@@ -180,6 +180,7 @@ signal plot_clicked(plot)
 @onready var seed_pack: Sprite2D = $SeedPack
 @onready var seed_post: Sprite2D = $SeedPost
 @onready var final_crop: Sprite2D = $FinalCrop
+@onready var final_shadow: Sprite2D = $FinalCropShadow
 @onready var crop_stages: Array[Sprite2D] = [
 	$CropStage_UL,
 	$CropStage_UR,
@@ -198,10 +199,13 @@ var locked := false
 
 
 func _ready():
+	print(final_shadow)
+
 	state = PlotState.COVERED
 	if crop_data:
 		apply_crop_data()
 	update_visuals()
+
 
 
 func set_seed(id):
@@ -219,7 +223,8 @@ func apply_crop_data():
 	crop_stages[2].texture = crop_data.crop_stage_3
 	crop_stages[3].texture = crop_data.crop_stage_4
 	final_crop.texture = crop_data.final_crop
-	
+	final_shadow.texture = crop_data.final_crop
+
 	if not seed_pack:
 		print("seed_pack null")
 	if not seed_post:
@@ -232,6 +237,7 @@ func apply_crop_data():
 
 
 func update_visuals():
+	final_shadow.visible = false
 	base_tile.visible = true
 	seed_pack.visible = false
 	seed_post.visible = false
@@ -253,7 +259,14 @@ func update_visuals():
 				c.visible = true
 
 		PlotState.WIN:
+			final_shadow.visible = true
+			final_shadow.scale = Vector2(7,7)
+			seed_post.visible = false
+			for c in crop_stages:
+				c.texture = crop_data.final_crop
+				c.visible = true
 			final_crop.visible = true
+			final_crop.scale = Vector2(6,6)
 
 
 #func reveal():
@@ -287,10 +300,38 @@ func lock_in():
 	tween.tween_property(self, "scale", Vector2(1.15, 1.15), 0.1)
 	tween.tween_property(self, "scale", Vector2(1, 1), 0.1)
 
+func set_growth_stage(stage:int):
+	if not crop_data:
+		return
+
+	match stage:
+		1:
+			for c in crop_stages:
+				c.texture = crop_data.crop_stage_1
+		2:
+			for c in crop_stages:
+				c.texture = crop_data.crop_stage_2
+		3:
+			for c in crop_stages:
+				c.texture = crop_data.crop_stage_3
+		4:
+			for c in crop_stages:
+				c.texture = crop_data.crop_stage_4
+
+	update_visuals()
+
 
 
 func set_win():
 	state = PlotState.WIN
+	update_visuals()
+	
+func set_final_stage():
+	state = PlotState.WIN
+	seed_post.visible = false
+	for c in crop_stages:
+		c.texture = crop_data.final_crop
+	final_crop.visible = true
 	update_visuals()
 
 
