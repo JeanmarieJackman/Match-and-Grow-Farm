@@ -1,4 +1,4 @@
-# Memory Farm Game
+# Match & Grow Farm
 
 ## Description
 A small browser-based puzzle game combining memory matching with a farm theme. Players dig plots to reveal seeds. Matching seeds grow crops. Fewer turns equals a higher score.
@@ -27,6 +27,12 @@ Source: https://kenmi-art.itch.io/
 Asset pack purchased via itch.io. Used with permission.
 
 ## Next Steps
+### Alpha
 Remaining turns UI.  
 Win/lose screens.  
+Placeholder Audio
+### Beta
+Presentation Animation
 Replace placeholder visuals.
+Final Audio
+
