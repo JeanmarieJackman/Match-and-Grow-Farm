@@ -256,14 +256,22 @@ func update_visuals():
 			final_crop.visible = true
 
 
+#func reveal():
+	#state = PlotState.REVEALED
+	#update_visuals()
+#
+	#var tween = create_tween()
+	#scale = Vector2(0.9, 0.9)
+	#tween.tween_property(self, "scale", Vector2(1, 1), 0.08)
+
 func reveal():
 	state = PlotState.REVEALED
-	update_visuals()
-
+	
 	var tween = create_tween()
-	scale = Vector2(0.9, 0.9)
+	tween.tween_property(self, "scale", Vector2(0.8, 0.8), 0.08)
 	tween.tween_property(self, "scale", Vector2(1, 1), 0.08)
-
+	
+	update_visuals()
 
 func hide_seed():
 	state = PlotState.COVERED
@@ -274,6 +282,11 @@ func lock_in():
 	locked = true
 	state = PlotState.MATCHED
 	update_visuals()
+
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(1.15, 1.15), 0.1)
+	tween.tween_property(self, "scale", Vector2(1, 1), 0.1)
+
 
 
 func set_win():
