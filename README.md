@@ -20,7 +20,8 @@ Prototype complete. Core loop implemented (grid, matching, visual states).
 Engine: Godot 4.x  
 Platform: HTML5 (itch.io target)
 
-##Credits
+## Credits
+
 ### Art assets by Kenmi Art
 Source: https://kenmi-art.itch.io/
 
@@ -36,6 +37,11 @@ https://pck404.itch.io/casual-gaming-free-music-loop-pack-01
 
 Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)
 https://creativecommons.org/licenses/by/4.0/
+
+### Sound Effects
+Casual Game Music Pack 3 – Sound Effects
+by WOW Sound
+https://wowsound.itch.io/casual-game-music-pack-3
 
 ## Next Steps
 ### Alpha
