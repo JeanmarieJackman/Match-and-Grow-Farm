@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cnqafm0rix5yk" path="res://art/crops/lettuce/lettuce_seedpack.png" id="15_ryguw"]
 [ext_resource type="Texture2D" uid="uid://n2uvrjvm1nn7" path="res://art/crops/lettuce/lettuce_post.png" id="16_d13ii"]
 [ext_resource type="Texture2D" uid="uid://c4x4bcdaslmd1" path="res://art/tiles/Grass_Middle.png" id="18_074og"]
+[ext_resource type="AudioStream" uid="uid://c01dtblwc4k7c" path="res://audio/music/pck404_cosy_bossa.ogg" id="19_cegan"]
 
 [sub_resource type="Resource" id="Resource_1u8w0"]
 script = ExtResource("2_0odxb")
@@ -50,5 +51,11 @@ script = ExtResource("2_0xm2m")
 [node name="Background" type="Sprite2D" parent="." unique_id=97677065]
 scale = Vector2(400, 400)
 texture = ExtResource("18_074og")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=381534653]
+stream = ExtResource("19_cegan")
+volume_db = 10.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="turns_changed" from="Board" to="CanvasLayer/TurnsLabel" method="_on_board_turns_changed"]
