@@ -17,8 +17,13 @@
 [ext_resource type="Texture2D" uid="uid://n2o30qfhgg4w" path="res://art/crops/lettuce/lettuce.png" id="14_getpj"]
 [ext_resource type="Texture2D" uid="uid://cnqafm0rix5yk" path="res://art/crops/lettuce/lettuce_seedpack.png" id="15_ryguw"]
 [ext_resource type="Texture2D" uid="uid://n2uvrjvm1nn7" path="res://art/crops/lettuce/lettuce_post.png" id="16_d13ii"]
+[ext_resource type="AudioStream" uid="uid://df360vn77q45y" path="res://audio/sfx/CGM3_Plow_01_1.wav" id="17_82xsv"]
 [ext_resource type="Texture2D" uid="uid://c4x4bcdaslmd1" path="res://art/tiles/Grass_Middle.png" id="18_074og"]
+[ext_resource type="AudioStream" uid="uid://vnpr1dt7yn6y" path="res://audio/sfx/CGM3_Crop_Produce_01_1.wav" id="18_getpj"]
 [ext_resource type="AudioStream" uid="uid://c01dtblwc4k7c" path="res://audio/music/pck404_cosy_bossa.ogg" id="19_cegan"]
+[ext_resource type="AudioStream" uid="uid://ceqhwey24gxuw" path="res://audio/sfx/CGM3_Negative_Stinger_01_2.wav" id="19_ryguw"]
+[ext_resource type="AudioStream" uid="uid://cpuaqskk6s5t3" path="res://audio/sfx/CGM3_Quest_Complete_02.wav" id="20_1u8w0"]
+[ext_resource type="AudioStream" uid="uid://d623yc4rhexa" path="res://audio/sfx/CGM3_Funny_Negative_Feedback_02_1.wav" id="21_0odxb"]
 
 [sub_resource type="Resource" id="Resource_1u8w0"]
 script = ExtResource("2_0odxb")
@@ -39,6 +44,28 @@ position = Vector2(200, 200)
 script = ExtResource("1_0xm2m")
 crop_types = Array[ExtResource("2_0odxb")]([ExtResource("3_lswn8"), ExtResource("4_a6jrf"), ExtResource("5_xuqvo"), ExtResource("6_qsp4k"), ExtResource("7_kq58d"), ExtResource("8_seu75"), ExtResource("9_htxhm"), SubResource("Resource_1u8w0")])
 
+[node name="SFX_Click" type="AudioStreamPlayer" parent="Board" unique_id=1206599026]
+stream = ExtResource("17_82xsv")
+volume_db = 6.0
+
+[node name="SFX_Match" type="AudioStreamPlayer" parent="Board" unique_id=1568429148]
+stream = ExtResource("18_getpj")
+volume_db = 6.0
+
+[node name="SFX_Miss" type="AudioStreamPlayer" parent="Board" unique_id=394159101]
+stream = ExtResource("19_ryguw")
+volume_db = 6.0
+
+[node name="SFX_Win" type="AudioStreamPlayer" parent="Board" unique_id=401480172]
+process_mode = 3
+stream = ExtResource("20_1u8w0")
+volume_db = 10.0
+
+[node name="SFX_Lose" type="AudioStreamPlayer" parent="Board" unique_id=350697490]
+process_mode = 3
+stream = ExtResource("21_0odxb")
+volume_db = 10.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1732057584]
 
 [node name="TurnsLabel" type="Label" parent="CanvasLayer" unique_id=1323811307]
@@ -54,7 +81,7 @@ texture = ExtResource("18_074og")
 
 [node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=381534653]
 stream = ExtResource("19_cegan")
-volume_db = 10.0
+volume_db = 3.0
 autoplay = true
 parameters/looping = true
 

@@ -5,7 +5,7 @@ signal turns_changed(value)
 @export var rows := 4
 @export var cols := 4
 @export var spacing := 220
-@export var max_turns := 160
+@export var max_turns := 10
 @export var crop_types: Array[CropData]
 
 
@@ -17,6 +17,13 @@ var second_selected = null
 #var seed_pool := []
 var match_count := 0
 var growth_stage := 1
+
+@onready var sfx_click: AudioStreamPlayer = $SFX_Click
+@onready var sfx_match: AudioStreamPlayer = $SFX_Match
+@onready var sfx_miss: AudioStreamPlayer = $SFX_Miss
+@onready var sfx_win: AudioStreamPlayer = $SFX_Win
+@onready var sfx_lose: AudioStreamPlayer = $SFX_Lose
+
 
 
 #func generate_seeds():
@@ -144,6 +151,8 @@ func _on_plot_clicked(plot):
 	if first_selected == null:
 		first_selected = plot
 		plot.reveal()
+		sfx_click.play()
+
 	elif second_selected == null and plot != first_selected:
 		second_selected = plot
 		plot.reveal()
@@ -180,12 +189,15 @@ func check_match():
 	if first_selected.seed_id == second_selected.seed_id:
 		first_selected.lock_in()
 		second_selected.lock_in()
+		sfx_match.play()
+
 		
 		match_count += 1
 		update_growth_stage()
 		
 	else:
-		await get_tree().create_timer(0.5).timeout
+		sfx_miss.play()
+		await get_tree().create_timer(0.75).timeout
 		first_selected.hide_seed()
 		second_selected.hide_seed()
 
@@ -194,13 +206,17 @@ func check_match():
 	resolving = false
 	
 	if remaining_turns <= 0:
+		sfx_lose.play()
 		print("LOSE")
+		await get_tree().create_timer(1.0).timeout
 		get_tree().paused = true
 	elif all_matched():
+		sfx_win.play()
 		print("WIN")
 		for p in plots:
 			#p.set_win()
 			p.set_final_stage()
+		await get_tree().create_timer(1.0).timeout
 		get_tree().paused = true
 
 func all_matched():
