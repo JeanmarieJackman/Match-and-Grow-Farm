@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cvooujhiw2sgu"]
 
+[ext_resource type="Script" uid="uid://dcovj1qiyg6m5" path="res://scripts/main.gd" id="1_0odxb"]
 [ext_resource type="Script" uid="uid://2uufpngk7kx8" path="res://scripts/board.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://djkevnw5xau71" path="res://scripts/CropData.gd" id="2_0odxb"]
 [ext_resource type="Script" uid="uid://d0x2tmqhgod0s" path="res://scripts/turns_label.gd" id="2_0xm2m"]
@@ -37,6 +38,7 @@ final_crop = ExtResource("14_getpj")
 metadata/_custom_type_script = "uid://djkevnw5xau71"
 
 [node name="Main" type="Node2D" unique_id=645306665]
+script = ExtResource("1_0odxb")
 
 [node name="Board" type="Node2D" parent="." unique_id=1643349823]
 top_level = true
@@ -68,14 +70,47 @@ volume_db = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1732057584]
 
-[node name="TurnsLabel" type="Label" parent="CanvasLayer" unique_id=1323811307]
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=885878820]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = 40.0
+
+[node name="TopPanel" type="VBoxContainer" parent="CanvasLayer/UI" unique_id=831897232]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameTitle" type="Label" parent="CanvasLayer/UI/TopPanel" unique_id=643887406]
+layout_mode = 2
+
+[node name="Instructions" type="Label" parent="CanvasLayer/UI/TopPanel" unique_id=1064742044]
+layout_mode = 2
+
+[node name="TurnsLabel" type="Label" parent="CanvasLayer/UI/TopPanel" unique_id=1323811307]
+layout_mode = 2
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 script = ExtResource("2_0xm2m")
 
+[node name="EndPanel" type="Panel" parent="CanvasLayer/UI" unique_id=878018790]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EndMessage" type="Label" parent="CanvasLayer/UI/EndPanel" unique_id=292537449]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/UI/EndPanel" unique_id=1320998014]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
 [node name="Background" type="Sprite2D" parent="." unique_id=97677065]
+position = Vector2(89, 51)
 scale = Vector2(400, 400)
 texture = ExtResource("18_074og")
 
@@ -85,4 +120,5 @@ volume_db = 3.0
 autoplay = true
 parameters/looping = true
 
-[connection signal="turns_changed" from="Board" to="CanvasLayer/TurnsLabel" method="_on_board_turns_changed"]
+[connection signal="turns_changed" from="Board" to="." method="_on_board_turns_changed"]
+[connection signal="turns_changed" from="Board" to="CanvasLayer/UI/TopPanel/TurnsLabel" method="_on_board_turns_changed"]
