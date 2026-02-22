@@ -12,7 +12,7 @@ func _ready():
 	
 func _on_board_game_won():
 	print("MAIN RECEIVED WIN")
-	$CanvasLayer/WinLabel.visible = true
+	$CanvasLayer/UI/WinLabel.visible = true
 #
 #func _on_board_game_lost():
 	#end_message.text = "Out of Turns!"
