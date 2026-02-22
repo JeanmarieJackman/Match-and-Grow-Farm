@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cvooujhiw2sgu"]
 
+[ext_resource type="Script" uid="uid://dcovj1qiyg6m5" path="res://scripts/main.gd" id="1_0odxb"]
 [ext_resource type="Script" uid="uid://2uufpngk7kx8" path="res://scripts/board.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://djkevnw5xau71" path="res://scripts/CropData.gd" id="2_0odxb"]
 [ext_resource type="Script" uid="uid://d0x2tmqhgod0s" path="res://scripts/turns_label.gd" id="2_0xm2m"]
@@ -37,6 +38,7 @@ final_crop = ExtResource("14_getpj")
 metadata/_custom_type_script = "uid://djkevnw5xau71"
 
 [node name="Main" type="Node2D" unique_id=645306665]
+script = ExtResource("1_0odxb")
 
 [node name="Board" type="Node2D" parent="." unique_id=1643349823]
 top_level = true
@@ -74,6 +76,12 @@ offset_bottom = 23.0
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 script = ExtResource("2_0xm2m")
+
+[node name="WinLabel" type="Label" parent="CanvasLayer" unique_id=1816760769]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "You WIN!!"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=97677065]
 scale = Vector2(400, 400)

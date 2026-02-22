@@ -1,11 +1,12 @@
 extends Node2D
 
 signal turns_changed(value)
+signal game_won
 
 @export var rows := 4
 @export var cols := 4
 @export var spacing := 220
-@export var max_turns := 16
+@export var max_turns := 200
 @export var crop_types: Array[CropData]
 
 var remaining_turns := 0
@@ -109,6 +110,8 @@ func check_match():
 	elif all_matched():
 		sfx_win.play()
 		print("WIN")
+		print("EMITTING GAME WON")
+		emit_signal("game_won")
 		for p in plots:
 			#p.set_win()
 			p.set_final_stage()
