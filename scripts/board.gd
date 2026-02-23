@@ -2,11 +2,12 @@ extends Node2D
 
 signal turns_changed(value)
 signal game_won
+signal game_lost
 
 @export var rows := 4
 @export var cols := 4
 @export var spacing := 220
-@export var max_turns := 200
+@export var max_turns := 10
 @export var crop_types: Array[CropData]
 
 var remaining_turns := 0
@@ -103,6 +104,8 @@ func check_match():
 	if remaining_turns <= 0:
 		sfx_lose.play()
 		print("LOSE")
+		print("EMITTING GAME LOST")
+		emit_signal("game_lost")
 		for p in plots:
 			p.set_lose()
 		await get_tree().create_timer(1.0).timeout

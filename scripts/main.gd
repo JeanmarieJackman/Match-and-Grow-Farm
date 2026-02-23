@@ -5,6 +5,7 @@ extends Node2D
 #
 func _ready():
 	$Board.game_won.connect(_on_board_game_won)
+	$Board.game_lost.connect(_on_board_game_lost)
 	
 #func _on_board_game_won():
 	#end_message.text = "You Win!"
@@ -19,10 +20,19 @@ func _on_board_game_won():
 	var panel = $CanvasLayer/UI/EndPanel
 	print(panel)
 	panel.visible = true
+	$CanvasLayer/UI/EndPanel/EndMessage.text = "You Win!"
+	
 #func _on_board_game_lost():
 	#end_message.text = "Out of Turns!"
 	#end_panel.visible = true
-
+	
+func _on_board_game_lost():
+	print("MAIN RECEIVED LOSE")
+	var panel = $CanvasLayer/UI/EndPanel
+	print(panel)
+	panel.visible = true
+	$CanvasLayer/UI/EndPanel/EndMessage.text = "Out of Turns!"
+	
 func _on_restart_button_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
