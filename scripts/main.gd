@@ -10,10 +10,15 @@ func _ready():
 	#end_message.text = "You Win!"
 	#end_panel.visible = true
 	
+#func _on_board_game_won():
+	#print("MAIN RECEIVED WIN")
+	#$CanvasLayer/UI/EndPanel/WinLabel.visible = true
+#
 func _on_board_game_won():
 	print("MAIN RECEIVED WIN")
-	$CanvasLayer/UI/WinLabel.visible = true
-#
+	var panel = $CanvasLayer/UI/EndPanel
+	print(panel)
+	panel.visible = true
 #func _on_board_game_lost():
 	#end_message.text = "Out of Turns!"
 	#end_panel.visible = true
