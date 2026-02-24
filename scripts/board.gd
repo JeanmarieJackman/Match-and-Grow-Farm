@@ -17,6 +17,7 @@ var first_selected = null
 var second_selected = null
 var match_count := 0
 var growth_stage := 1
+var game_over := false
 
 @onready var sfx_click: AudioStreamPlayer = $SFX_Click
 @onready var sfx_match: AudioStreamPlayer = $SFX_Match
@@ -65,6 +66,8 @@ func spawn_grid():
 			plots.append(plot)
 		
 func _on_plot_clicked(plot):
+	if game_over:
+		return
 	if resolving:
 		return
 		
@@ -93,7 +96,7 @@ func check_match():
 	
 	else:
 		sfx_miss.play()
-		await get_tree().create_timer(0.75).timeout
+		await get_tree().create_timer(0.3).timeout
 		first_selected.hide_seed()
 		second_selected.hide_seed()
 
@@ -104,22 +107,24 @@ func check_match():
 	if remaining_turns <= 0:
 		sfx_lose.play()
 		print("LOSE")
+		game_over = true
 		print("EMITTING GAME LOST")
 		emit_signal("game_lost")
 		for p in plots:
 			p.set_lose()
 		await get_tree().create_timer(1.0).timeout
-		get_tree().paused = true
+		#get_tree().paused = true
 	elif all_matched():
 		sfx_win.play()
 		print("WIN")
+		game_over = true
 		print("EMITTING GAME WON")
 		emit_signal("game_won")
 		for p in plots:
 			#p.set_win()
 			p.set_final_stage()
 		await get_tree().create_timer(1.0).timeout
-		get_tree().paused = true
+		#get_tree().paused = true
 
 func all_matched():
 	for p in plots:

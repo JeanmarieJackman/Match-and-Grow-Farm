@@ -6,6 +6,7 @@ extends Node2D
 func _ready():
 	$Board.game_won.connect(_on_board_game_won)
 	$Board.game_lost.connect(_on_board_game_lost)
+	$CanvasLayer/UI/EndPanel/RestartButton.pressed.connect(_on_restart_button_pressed)
 	
 #func _on_board_game_won():
 	#end_message.text = "You Win!"
@@ -34,6 +35,11 @@ func _on_board_game_lost():
 	$CanvasLayer/UI/EndPanel/EndMessage.text = "Out of Turns!"
 	
 func _on_restart_button_pressed():
-	get_tree().paused = false
+	#get_tree().paused = false
+	print("RESTART PRESSED")
 	get_tree().reload_current_scene()
+	
+#func _on_restart_button_pressed():
+	#print("RESTART PRESSED")
+	#visible = false
 	
