@@ -91,10 +91,21 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="EndMessage" type="Label" parent="CanvasLayer/UI/EndPanel" unique_id=1816760769]
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 0
-offset_right = 75.0
-offset_bottom = 23.0
+offset_left = 151.0
+offset_right = 301.0
+offset_bottom = 50.0
 text = "You WIN!!"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/UI/EndPanel" unique_id=1685213443]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 0
+offset_left = 115.0
+offset_top = 27.0
+offset_right = 265.0
+offset_bottom = 77.0
+text = "Restart"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=97677065]
 scale = Vector2(400, 400)
