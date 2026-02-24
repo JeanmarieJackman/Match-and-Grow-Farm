@@ -104,17 +104,7 @@ func check_match():
 	second_selected = null
 	resolving = false
 	
-	if remaining_turns <= 0:
-		sfx_lose.play()
-		print("LOSE")
-		game_over = true
-		print("EMITTING GAME LOST")
-		emit_signal("game_lost")
-		for p in plots:
-			p.set_lose()
-		await get_tree().create_timer(1.0).timeout
-		#get_tree().paused = true
-	elif all_matched():
+	if all_matched():
 		sfx_win.play()
 		print("WIN")
 		game_over = true
@@ -123,6 +113,17 @@ func check_match():
 		for p in plots:
 			#p.set_win()
 			p.set_final_stage()
+		await get_tree().create_timer(1.0).timeout
+		#get_tree().paused = true
+		
+	elif remaining_turns <= 0:
+		sfx_lose.play()
+		print("LOSE")
+		game_over = true
+		print("EMITTING GAME LOST")
+		emit_signal("game_lost")
+		for p in plots:
+			p.set_lose()
 		await get_tree().create_timer(1.0).timeout
 		#get_tree().paused = true
 
