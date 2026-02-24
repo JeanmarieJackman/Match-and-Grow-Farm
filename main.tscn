@@ -42,7 +42,7 @@ script = ExtResource("1_0odxb")
 
 [node name="Board" type="Node2D" parent="." unique_id=1643349823]
 top_level = true
-position = Vector2(200, 200)
+position = Vector2(365, 261)
 script = ExtResource("1_0xm2m")
 crop_types = Array[ExtResource("2_0odxb")]([ExtResource("3_lswn8"), ExtResource("4_a6jrf"), ExtResource("5_xuqvo"), ExtResource("6_qsp4k"), ExtResource("7_kq58d"), ExtResource("8_seu75"), ExtResource("9_htxhm"), SubResource("Resource_1u8w0")])
 
@@ -71,8 +71,10 @@ volume_db = 10.0
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1732057584]
 
 [node name="TurnsLabel" type="Label" parent="CanvasLayer" unique_id=1323811307]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 66.0
+offset_top = 53.0
+offset_right = 106.0
+offset_bottom = 108.0
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 script = ExtResource("2_0xm2m")
@@ -86,26 +88,69 @@ offset_bottom = 40.0
 [node name="EndPanel" type="Panel" parent="CanvasLayer/UI" unique_id=1107669240]
 visible = false
 custom_minimum_size = Vector2(400, 200)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 455.0
+offset_top = 1058.0
+offset_right = 855.0
+offset_bottom = 1258.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.0989822, 0.46068543)
 
 [node name="EndMessage" type="Label" parent="CanvasLayer/UI/EndPanel" unique_id=1816760769]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 0
-offset_left = 151.0
-offset_right = 301.0
-offset_bottom = 50.0
+offset_left = 121.93103
+offset_top = 26.048187
+offset_right = 271.93103
+offset_bottom = 149.7024
+theme_override_font_sizes/font_size = 26
 text = "You WIN!!"
 
 [node name="RestartButton" type="Button" parent="CanvasLayer/UI/EndPanel" unique_id=1685213443]
 custom_minimum_size = Vector2(150, 20)
 layout_mode = 0
-offset_left = 115.0
-offset_top = 27.0
-offset_right = 265.0
-offset_bottom = 77.0
+offset_left = 111.92176
+offset_top = 84.65639
+offset_right = 261.92175
+offset_bottom = 169.38686
+theme_override_font_sizes/font_size = 24
 text = "Restart"
+
+[node name="TopBar" type="Panel" parent="CanvasLayer/UI" unique_id=73128638]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 464.0
+offset_right = 888.0
+offset_bottom = 76.0
+grow_horizontal = 2
+
+[node name="GameTitle" type="Label" parent="CanvasLayer/UI/TopBar" unique_id=1098287317]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 48
+text = "Match & Grow Farm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameRules" type="Label" parent="CanvasLayer/UI/TopBar" unique_id=1417303347]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 71.0
+offset_right = 435.0
+offset_bottom = 172.0
+text = "Click the plots to reveal the seed packs!
+Match two to plant your crops.
+The more you match, the taller your plants grow!
+Match them all and harvest before your turns run out!"
+horizontal_alignment = 1
 
 [node name="Background" type="Sprite2D" parent="." unique_id=97677065]
 scale = Vector2(400, 400)
