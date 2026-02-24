@@ -7,7 +7,7 @@ signal game_lost
 @export var rows := 4
 @export var cols := 4
 @export var spacing := 220
-@export var max_turns := 10
+@export var max_turns := 16
 @export var crop_types: Array[CropData]
 
 var remaining_turns := 0

@@ -37,12 +37,18 @@ crop_stage_4 = ExtResource("13_82xsv")
 final_crop = ExtResource("14_getpj")
 metadata/_custom_type_script = "uid://djkevnw5xau71"
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lswn8"]
+bg_color = Color(0.99607843, 0.99607843, 0.99607843, 0.039215688)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0odxb"]
+bg_color = Color(0.8117647, 0.70980394, 0.45882353, 0.02745098)
+
 [node name="Main" type="Node2D" unique_id=645306665]
 script = ExtResource("1_0odxb")
 
 [node name="Board" type="Node2D" parent="." unique_id=1643349823]
 top_level = true
-position = Vector2(365, 261)
+position = Vector2(363, 308)
 script = ExtResource("1_0xm2m")
 crop_types = Array[ExtResource("2_0odxb")]([ExtResource("3_lswn8"), ExtResource("4_a6jrf"), ExtResource("5_xuqvo"), ExtResource("6_qsp4k"), ExtResource("7_kq58d"), ExtResource("8_seu75"), ExtResource("9_htxhm"), SubResource("Resource_1u8w0")])
 
@@ -101,24 +107,27 @@ offset_bottom = 1258.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.0989822, 0.46068543)
+theme_override_styles/panel = SubResource("StyleBoxFlat_lswn8")
 
 [node name="EndMessage" type="Label" parent="CanvasLayer/UI/EndPanel" unique_id=1816760769]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 0
-offset_left = 121.93103
-offset_top = 26.048187
-offset_right = 271.93103
-offset_bottom = 149.7024
+offset_left = 93.72311
+offset_top = 4.341357
+offset_right = 243.72311
+offset_bottom = 54.34136
+scale = Vector2(1.2113525, 2.3958812)
 theme_override_font_sizes/font_size = 26
 text = "You WIN!!"
 
 [node name="RestartButton" type="Button" parent="CanvasLayer/UI/EndPanel" unique_id=1685213443]
 custom_minimum_size = Vector2(150, 20)
 layout_mode = 0
-offset_left = 111.92176
-offset_top = 84.65639
-offset_right = 261.92175
-offset_bottom = 169.38686
+offset_left = 111.011826
+offset_top = 105.5744
+offset_right = 261.01184
+offset_bottom = 161.97162
+scale = Vector2(1, 1.47657)
 theme_override_font_sizes/font_size = 24
 text = "Restart"
 
@@ -130,6 +139,7 @@ offset_left = 464.0
 offset_right = 888.0
 offset_bottom = 76.0
 grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0odxb")
 
 [node name="GameTitle" type="Label" parent="CanvasLayer/UI/TopBar" unique_id=1098287317]
 layout_mode = 0
@@ -142,10 +152,10 @@ vertical_alignment = 1
 
 [node name="GameRules" type="Label" parent="CanvasLayer/UI/TopBar" unique_id=1417303347]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 71.0
-offset_right = 435.0
-offset_bottom = 172.0
+offset_left = 17.0
+offset_top = 81.0
+offset_right = 436.0
+offset_bottom = 182.0
 text = "Click the plots to reveal the seed packs!
 Match two to plant your crops.
 The more you match, the taller your plants grow!
